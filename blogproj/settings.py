@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     #3rd party apps
     'rest_framework',
-
+    'rest_framework.authtoken',
 
 
 ]
@@ -52,7 +52,12 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
 }
 
 
@@ -83,6 +88,10 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    ('django.contrib.auth.backends.ModelBackend'),
+)
 
 WSGI_APPLICATION = 'blogproj.wsgi.application'
 
